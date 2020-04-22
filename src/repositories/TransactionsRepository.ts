@@ -6,23 +6,38 @@ interface Balance {
   total: number;
 }
 
+interface RequestDTO {
+  title: string;
+  value: number;
+  type: 'income' | 'outcome';
+}
+
 class TransactionsRepository {
   private transactions: Transaction[];
 
+  private balance: Balance[];
+
   constructor() {
     this.transactions = [];
+    this.balance = [];
   }
 
   public all(): Transaction[] {
-    // TODO
+    return this.transactions;
   }
 
-  public getBalance(): Balance {
-    // TODO
+  public getBalance(type: string, value: 'income' | 'outcome'): Balance {
+    const newBalance = this.balance;
+
+    return newBalance;
   }
 
-  public create(): Transaction {
-    // TODO
+  public create({ title, type, value }: RequestDTO): Transaction {
+    const transaction = new Transaction({ title, type, value });
+
+    this.transactions.push(transaction);
+
+    return transaction;
   }
 }
 
